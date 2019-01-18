@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/SainaYar.InvestmentFund.Model/bin/Debug/netcoreapp2.2
+/SainaYar.InvestmentFund.Model/obj
+/SainaYar.Matchmaking.Model/bin/Debug/netcoreapp2.2
+/SainaYar.Matchmaking.Tests/bin/Debug/netcoreapp2.2
+/SainaYar.Matchmaking.Tests/obj
+/SainaYar.SharedKernel/bin/Debug/netcoreapp2.2
+/SainaYar.SharedKernel/obj
+/SainaYar.SharedKernel.Tests/bin/Debug/netcoreapp2.2
+/SainaYar.SharedKernel.Tests/obj
+/SainaYar.Tests/bin/Debug/netcoreapp2.2
+/SainaYar.Tests/obj
