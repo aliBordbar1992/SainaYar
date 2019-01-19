@@ -5,11 +5,12 @@ namespace SainaYar.Matchmaking.Core.Model
 {
     public class MatchResult<T>
     {
-        public MatchResult(Guid id, Guid gameId, Guid matchId)
+        public MatchResult(Guid id, Guid gameId, Guid matchId, IWinnerSpecification gameWinSpecification)
         {
             Id = id;
             GameId = gameId;
             MatchId = matchId;
+            GameWinSpecification = gameWinSpecification;
         }
 
         public Guid Id { get; private set; }
@@ -19,17 +20,29 @@ namespace SainaYar.Matchmaking.Core.Model
         public T Loser { get; private set; }
         public ResultScore WinnerScore { get; private set; }
         public ResultScore LoserScore { get; private set; }
+        public IWinnerSpecification GameWinSpecification { get; private set; }
         
-        public void SetWinner(T winner, ResultScore winnerScore)
+        public void SetWinner(T winner)
         {
             Winner = winner;
-            WinnerScore = winnerScore;
+            WinnerScore = GetScores();
         }
 
-        public void SetLoser(T loser, ResultScore loserScore)
+        public void SetLoser(T loser)
         {
             Loser = loser;
-            LoserScore = loserScore;
+            LoserScore = GetScores();
         }
+
+        private ResultScore GetScores()
+        {
+            int roundsWon = GameWinSpecification.RoundsWin;
+            int roundsLost = GameWinSpecification.RoundsLost;
+            double pointsTaken = GameWinSpecification.Calculator.CalculatePointsTaken();
+            double pointLost = GameWinSpecification.Calculator.CalculatePointsLost();
+
+            return new ResultScore(Guid.NewGuid(), Id, GameId, roundsWon, roundsLost, pointsTaken, pointLost);
+        }
+
     }
 }

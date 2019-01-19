@@ -1,4 +1,5 @@
 ﻿using System;
+using SainaYar.Matchmaking.Core.Interfaces;
 
 namespace SainaYar.Matchmaking.Core.Model
 {
@@ -20,9 +21,9 @@ namespace SainaYar.Matchmaking.Core.Model
             MatchDate = schedule;
         }
 
-        public MatchResult<T> Result()
+        public MatchResult<T> Result(IWinnerSpecification gameWinSpecification)
         {
-            return new MatchResult<T>(Guid.NewGuid(), GameId, Id);
+            return new MatchResult<T>(Guid.NewGuid(), GameId, Id, gameWinSpecification);
         }
     }
 }

@@ -7,7 +7,6 @@ namespace SainaYar.Matchmaking.Core.Model
     {
         public Guid Id { get; }
         public string Name { get; set; }
-        public string 
 
         public Player(Guid id)
         {
@@ -15,27 +14,23 @@ namespace SainaYar.Matchmaking.Core.Model
         }
         private Player() { }
 
-        public void Won(MatchResult<Player> matchResult, IWinnerSpecification gameWinSpecification)
-        {
-            int roundsWon = gameWinSpecification.RoundsWin;
-            int roundsLost = gameWinSpecification.RoundsLost;
-            double pointsTaken = gameWinSpecification.Calculator.CalculatePointsTaken();
-            double pointLost = gameWinSpecification.Calculator.CalculatePointsLost();
-            ResultScore scores = new ResultScore(Guid.NewGuid(), Id, roundsWon, roundsLost, pointsTaken, pointLost);
-            matchResult.SetWinner(this, scores);
-        }
+        //public void Won(MatchResult<Player> matchResult, IWinnerSpecification gameWinSpecification)
+        //{
+        //    _matchResult = matchResult;
+        //    _gameWinSpecification = gameWinSpecification;
 
-        public void Lost(MatchResult<Player> matchResult, IWinnerSpecification gameWinSpecification)
-        {
-            int roundsWon = gameWinSpecification.RoundsWin;
-            int roundsLost = gameWinSpecification.RoundsLost;
-            double pointsTaken = gameWinSpecification.Calculator.CalculatePointsTaken();
-            double pointLost = gameWinSpecification.Calculator.CalculatePointsLost();
+        //    matchResult.SetWinner(this, GetScores());
+        //}
 
-            ResultScore scores = new ResultScore(Guid.NewGuid(), Id, roundsWon, roundsLost, pointsTaken, pointLost);
-            matchResult.SetLoser(this, scores);
-        }
+        //public void Lost(MatchResult<Player> matchResult, IWinnerSpecification gameWinSpecification)
+        //{
+        //    _matchResult = matchResult;
+        //    _gameWinSpecification = gameWinSpecification;
 
+        //    matchResult.SetLoser(this, GetScores());
+        //}
+
+        
         public double TotalScoreIn(Guid gameId)
         {
             throw new NotImplementedException();
