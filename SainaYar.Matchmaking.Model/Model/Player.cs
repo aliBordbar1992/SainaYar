@@ -1,4 +1,5 @@
 ﻿using System;
+using SainaYar.Matchmaking.Core.DTO;
 using SainaYar.Matchmaking.Core.Interfaces;
 
 namespace SainaYar.Matchmaking.Core.Model
@@ -14,26 +15,14 @@ namespace SainaYar.Matchmaking.Core.Model
         }
         private Player() { }
 
-        //public void Won(MatchResult<Player> matchResult, IWinnerSpecification gameWinSpecification)
-        //{
-        //    _matchResult = matchResult;
-        //    _gameWinSpecification = gameWinSpecification;
-
-        //    matchResult.SetWinner(this, GetScores());
-        //}
-
-        //public void Lost(MatchResult<Player> matchResult, IWinnerSpecification gameWinSpecification)
-        //{
-        //    _matchResult = matchResult;
-        //    _gameWinSpecification = gameWinSpecification;
-
-        //    matchResult.SetLoser(this, GetScores());
-        //}
-
-        
         public double TotalScoreIn(Guid gameId)
         {
             throw new NotImplementedException();
+        }
+
+        public ParticipantSpecs<Player> Specs(Guid gameId, int roundsWon)
+        {
+            return new ParticipantSpecs<Player>(this, roundsWon, TotalScoreIn(gameId));
         }
     }
 }

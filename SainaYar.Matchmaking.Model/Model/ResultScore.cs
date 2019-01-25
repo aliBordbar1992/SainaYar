@@ -1,27 +1,37 @@
 ﻿using System;
+using SainaYar.Matchmaking.Core.Interfaces;
 
 namespace SainaYar.Matchmaking.Core.Model
 {
-    public class ResultScore
+    public class ResultScore<T>
     {
         public Guid Id { get; private set; }
-        public Guid PlayerId { get; private set; }
+        public Guid MatchId { get; private set; }
         public Guid GameId { get; private set; }
+        public T Participant { get; private set; }
+
         public double PointsTaken { get; private set; }
         public double PointLost { get; private set; }
 
         public int RoundsWon { get; private set; }
         public int RoundsLost { get; private set; }
 
-        public ResultScore(Guid id, Guid playerId, Guid gameId, int roundsWon, int roundsLost, double pointsTaken, double pointLost)
+        public ResultScore(T participant, Guid matchId, Guid gameId, int roundsWon, int roundsLost)
         {
-            Id = id;
-            PlayerId = playerId;
+            Id = Guid.NewGuid();
+            Participant = participant;
             GameId = gameId;
             RoundsWon = roundsWon;
             RoundsLost = roundsLost;
-            PointsTaken = pointsTaken;
-            PointLost = pointLost;
+        }
+
+        public void SetPointsTaken(IPointCalculator calculator)
+        {
+            PointsTaken = calculator.CalculatePointsTaken();
+        }
+        public void SetPointsLost(IPointCalculator calculator)
+        {
+            PointLost = calculator.CalculatePointsLost();
         }
     }
 }

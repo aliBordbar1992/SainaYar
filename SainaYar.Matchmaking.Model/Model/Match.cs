@@ -21,9 +21,9 @@ namespace SainaYar.Matchmaking.Core.Model
             MatchDate = schedule;
         }
 
-        public MatchResult<T> Result(IWinnerSpecification gameWinSpecification)
+        public MatchResult<T> Result(IMatchResultSpecification<T> gameWinSpecification)
         {
-            return new MatchResult<T>(Guid.NewGuid(), GameId, Id, gameWinSpecification);
+            return gameWinSpecification.GetResult(Id, GameId);
         }
     }
 }
