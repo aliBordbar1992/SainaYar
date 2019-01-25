@@ -1,32 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using SainaYar.Matchmaking.Core.DTO;
+using SainaYar.Matchmaking.Core.BaseModels;
 using SainaYar.Matchmaking.Core.Interfaces;
 using SainaYar.Matchmaking.Core.Model;
 
 namespace SainaYar.Matchmaking.Core.Services
 {
-    public class MortalKombatMatchResultSpecification<T> : IMatchResultSpecification<T> where T : Player
+    public class MortalKombatPlayerMatchResultSpecification : IMatchResultSpecification<Player> 
     {
         public readonly int MaxRounds = 3;
 
-        private readonly ParticipantSpecs<T> _firstParticipant;
-        private readonly ParticipantSpecs<T> _secondParticipant;
+        private readonly PlayerSpecs _firstParticipant;
+        private readonly PlayerSpecs _secondParticipant;
 
-        public MortalKombatMatchResultSpecification(ParticipantSpecs<T> firstPlayerSpecs, ParticipantSpecs<T> secondPlayerSpecs)
+        public MortalKombatPlayerMatchResultSpecification(PlayerSpecs firstPlayerSpecs, PlayerSpecs secondPlayerSpecs)
         {
             _firstParticipant = firstPlayerSpecs;
             _secondParticipant = secondPlayerSpecs;
         }
 
-        public MatchResult<T> GetResult(Guid matchId, Guid gameId)
+        public MatchResult<Player> GetResult(Guid matchId, Guid gameId)
         {
             var winner = GetWinner();
             var loser = GetLoser();
 
 
-            var matchResult = new MatchResult<T>(Guid.NewGuid(), matchId, gameId);
-
+            var matchResult = new PlayerMatchResult(Guid.NewGuid(), matchId, gameId);
 
             SetWinner(matchId, gameId, winner, loser, matchResult);
             SetLoser(matchId, gameId, loser, winner, matchResult);
@@ -34,10 +32,10 @@ namespace SainaYar.Matchmaking.Core.Services
             return matchResult;
         }
 
-        private void SetWinner(Guid matchId, Guid gameId, ParticipantSpecs<T> winner, ParticipantSpecs<T> loser, MatchResult<T> matchResult)
+        private void SetWinner(Guid matchId, Guid gameId, PlayerSpecs winner, PlayerSpecs loser, MatchResult<Player> matchResult)
         {
             var winnerResultScores =
-                new ResultScore<T>(
+                new PlayerResultScore(
                     winner.Participant,
                     matchId,
                     gameId,
@@ -55,10 +53,10 @@ namespace SainaYar.Matchmaking.Core.Services
 
             matchResult.SetWinner(winnerResultScores);
         }
-        private void SetLoser(Guid matchId, Guid gameId, ParticipantSpecs<T> loser, ParticipantSpecs<T> winner, MatchResult<T> matchResult)
+        private void SetLoser(Guid matchId, Guid gameId, PlayerSpecs loser, PlayerSpecs winner, MatchResult<Player> matchResult)
         {
             var loserResultScores =
-                new ResultScore<T>(
+                new PlayerResultScore(
                     loser.Participant,
                     matchId,
                     gameId,
@@ -78,7 +76,7 @@ namespace SainaYar.Matchmaking.Core.Services
         }
 
 
-        private ParticipantSpecs<T> GetWinner()
+        private PlayerSpecs GetWinner()
         {
             if (_firstParticipant.RoundsWon == MaxRounds)
                 return _firstParticipant;
@@ -88,7 +86,7 @@ namespace SainaYar.Matchmaking.Core.Services
 
             throw new ArgumentNullException($"no winner found");
         }
-        private ParticipantSpecs<T> GetLoser()
+        private PlayerSpecs GetLoser()
         {
             if (_firstParticipant.RoundsWon < MaxRounds)
                 return _firstParticipant;

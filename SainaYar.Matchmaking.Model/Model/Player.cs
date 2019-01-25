@@ -1,6 +1,5 @@
 ﻿using System;
-using SainaYar.Matchmaking.Core.DTO;
-using SainaYar.Matchmaking.Core.Interfaces;
+using SainaYar.Matchmaking.Core.BaseModels;
 
 namespace SainaYar.Matchmaking.Core.Model
 {
@@ -20,9 +19,9 @@ namespace SainaYar.Matchmaking.Core.Model
             throw new NotImplementedException();
         }
 
-        public ParticipantSpecs<Player> Specs(Guid gameId, int roundsWon)
+        public PlayerSpecs Specs(Guid gameId, int roundsWon)
         {
-            return new ParticipantSpecs<Player>(this, roundsWon, TotalScoreIn(gameId));
+            return new PlayerSpecs(this, roundsWon, TotalScoreIn(gameId));
         }
     }
 }

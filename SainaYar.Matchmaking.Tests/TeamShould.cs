@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using SainaYar.Matchmaking.Core;
 using SainaYar.Matchmaking.Core.Model;
 using Xunit;
 

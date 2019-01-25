@@ -1,9 +1,9 @@
 ﻿using System;
 using SainaYar.Matchmaking.Core.Interfaces;
 
-namespace SainaYar.Matchmaking.Core.Model
+namespace SainaYar.Matchmaking.Core.BaseModels
 {
-    public class ResultScore<T>
+    public abstract class ResultScore<T>
     {
         public Guid Id { get; private set; }
         public Guid MatchId { get; private set; }
@@ -16,11 +16,12 @@ namespace SainaYar.Matchmaking.Core.Model
         public int RoundsWon { get; private set; }
         public int RoundsLost { get; private set; }
 
-        public ResultScore(T participant, Guid matchId, Guid gameId, int roundsWon, int roundsLost)
+        protected ResultScore(T participant, Guid matchId, Guid gameId, int roundsWon, int roundsLost)
         {
             Id = Guid.NewGuid();
             Participant = participant;
             GameId = gameId;
+            MatchId = matchId;
             RoundsWon = roundsWon;
             RoundsLost = roundsLost;
         }

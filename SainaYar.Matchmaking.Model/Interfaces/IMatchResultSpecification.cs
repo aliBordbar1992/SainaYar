@@ -1,5 +1,5 @@
 ﻿using System;
-using SainaYar.Matchmaking.Core.DTO;
+using SainaYar.Matchmaking.Core.BaseModels;
 using SainaYar.Matchmaking.Core.Model;
 
 namespace SainaYar.Matchmaking.Core.Interfaces

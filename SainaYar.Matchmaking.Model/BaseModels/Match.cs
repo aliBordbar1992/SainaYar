@@ -1,9 +1,10 @@
 ﻿using System;
 using SainaYar.Matchmaking.Core.Interfaces;
+using SainaYar.Matchmaking.Core.Model;
 
-namespace SainaYar.Matchmaking.Core.Model
+namespace SainaYar.Matchmaking.Core.BaseModels
 {
-    public class Match<T>
+    public abstract class Match<T>
     {
         public Guid Id { get; }
         public Guid GameId { get; }
@@ -11,8 +12,7 @@ namespace SainaYar.Matchmaking.Core.Model
         public T Guest { get; }
         public DateTime MatchDate { get; set; }
 
-        private Match() { }
-        public Match(Guid id,Guid gameId, T host, T guest, Game game, DateTime schedule)
+        protected Match(Guid id,Guid gameId, T host, T guest, Game game, DateTime schedule)
         {
             Id = id;
             Host = host;

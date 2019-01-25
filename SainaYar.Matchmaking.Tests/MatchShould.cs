@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using FluentAssertions;
-using SainaYar.Matchmaking.Core.DTO;
+using SainaYar.Matchmaking.Core.BaseModels;
 using SainaYar.Matchmaking.Core.Interfaces;
 using SainaYar.Matchmaking.Core.Model;
 using SainaYar.Matchmaking.Core.Services;
@@ -19,9 +17,11 @@ namespace SainaYar.Matchmaking.Tests
             Player playerB = new Player(Guid.NewGuid()) { Name = "B" };
             Game mortalKombatGame = new Game(Guid.NewGuid(), "Mortal Kombat");
             DateTime tomorrow = DateTime.Now.AddDays(1);
-            Match<Player> theMatch = new Match<Player>(Guid.NewGuid(), mortalKombatGame.Id, playerA, playerB, mortalKombatGame, tomorrow);
+            Match<Player> theMatch = new PlayerMatch(Guid.NewGuid(), mortalKombatGame.Id, playerA, playerB, mortalKombatGame, tomorrow);
 
-            IMatchResultSpecification<Player> mkSpecs = new MortalKombatMatchResultSpecification<Player>(playerA.Specs(mortalKombatGame.Id, 3), playerB.Specs(mortalKombatGame.Id, 2));
+            IMatchResultSpecification<Player> mkSpecs = new MortalKombatPlayerMatchResultSpecification(
+                playerA.Specs(mortalKombatGame.Id, 3),
+                playerB.Specs(mortalKombatGame.Id, 2));
 
             var result = theMatch.Result(mkSpecs);
 
