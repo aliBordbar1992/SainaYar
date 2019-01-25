@@ -1,5 +1,7 @@
 ﻿using System;
 using SainaYar.Matchmaking.Core.BaseModels;
+using SainaYar.Matchmaking.Core.Interfaces;
+using SainaYar.Matchmaking.Core.Services;
 
 namespace SainaYar.Matchmaking.Core.Model
 {
@@ -7,6 +9,7 @@ namespace SainaYar.Matchmaking.Core.Model
     {
         public Guid Id { get; }
         public string Name { get; set; }
+        
 
         public Player(Guid id)
         {
@@ -14,14 +17,15 @@ namespace SainaYar.Matchmaking.Core.Model
         }
         private Player() { }
 
-        public double TotalScoreIn(Guid gameId)
+        public double TotalScoreIn(IGameResultRepository gameResult, Guid gameId)
         {
-            throw new NotImplementedException();
+            GameScoreProvider gsp = new GameScoreProvider(gameResult);
+            return gsp.PlayerScoresInGame(Id, gameId);
         }
 
-        public PlayerSpecs Specs(Guid gameId, int roundsWon)
+        public PlayerSpecs Specs(IGameResultRepository gameResult, Guid gameId, int roundsWon)
         {
-            return new PlayerSpecs(this, roundsWon, TotalScoreIn(gameId));
+            return new PlayerSpecs(this, roundsWon, TotalScoreIn(gameResult, gameId));
         }
     }
 }

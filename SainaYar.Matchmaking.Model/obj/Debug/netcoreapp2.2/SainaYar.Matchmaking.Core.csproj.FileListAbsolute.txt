@@ -1,9 +1,9 @@
 E:\Projects\SainaYar\SainaYar.Matchmaking.Model\bin\Debug\netcoreapp2.2\SainaYar.Matchmaking.Core.deps.json
 E:\Projects\SainaYar\SainaYar.Matchmaking.Model\bin\Debug\netcoreapp2.2\SainaYar.Matchmaking.Core.dll
 E:\Projects\SainaYar\SainaYar.Matchmaking.Model\bin\Debug\netcoreapp2.2\SainaYar.Matchmaking.Core.pdb
+E:\Projects\SainaYar\SainaYar.Matchmaking.Model\obj\Debug\netcoreapp2.2\SainaYar.Matchmaking.Core.csprojAssemblyReference.cache
 E:\Projects\SainaYar\SainaYar.Matchmaking.Model\obj\Debug\netcoreapp2.2\SainaYar.Matchmaking.Core.csproj.CoreCompileInputs.cache
 E:\Projects\SainaYar\SainaYar.Matchmaking.Model\obj\Debug\netcoreapp2.2\SainaYar.Matchmaking.Core.AssemblyInfoInputs.cache
 E:\Projects\SainaYar\SainaYar.Matchmaking.Model\obj\Debug\netcoreapp2.2\SainaYar.Matchmaking.Core.AssemblyInfo.cs
 E:\Projects\SainaYar\SainaYar.Matchmaking.Model\obj\Debug\netcoreapp2.2\SainaYar.Matchmaking.Core.dll
 E:\Projects\SainaYar\SainaYar.Matchmaking.Model\obj\Debug\netcoreapp2.2\SainaYar.Matchmaking.Core.pdb
-E:\Projects\SainaYar\SainaYar.Matchmaking.Model\obj\Debug\netcoreapp2.2\SainaYar.Matchmaking.Core.csprojAssemblyReference.cache
